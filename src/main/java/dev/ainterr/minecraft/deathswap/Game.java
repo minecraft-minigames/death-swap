@@ -48,17 +48,17 @@ public final class Game extends JavaPlugin {
 
     public void endRound(boolean grace) {
         if(!grace) {
-            Player[] players = (Player[]) this.players.keySet().toArray();
+            ArrayList<Player> players = new ArrayList<Player>(this.players.keySet());
 
-            if(players.length > 1) {
-                Location first = players[0].getLocation();
+            if(players.size() > 1) {
+                Location first = players.get(0).getLocation();
 
-                for(int i = 0; i < players.length; i++) {
-                    if(i < players.length - 1) {
-                        players[i].teleport(players[i+1].getLocation());
+                for(int i = 0; i < players.size(); i++) {
+                    if(i < players.size() - 1) {
+                        players.get(i).teleport(players.get(i+1).getLocation());
                     }
                     else {
-                        players[i].teleport(first);
+                        players.get(i).teleport(first);
                     }
                 }
             }
